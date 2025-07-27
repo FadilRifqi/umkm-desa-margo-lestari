@@ -18,166 +18,175 @@ import {
 } from "@/components/ui/carousel";
 import {
   Star,
-  Globe,
   TrendingUp,
   Users,
-  Clock,
-  Shield,
-  Zap,
   CheckCircle,
   ArrowRight,
   Play,
+  MapPin,
+  Award,
+  Heart,
+  Leaf,
 } from "lucide-react";
+import { motion } from "motion/react";
 
-// Sample data for carousel
+// Sample data for carousel - Village UMKM Products
 const products = [
   {
     id: 1,
-    title: "Website UMKM Professional",
+    title: "Kerajinan Tangan Anyaman Bambu",
     description:
-      "Website lengkap dengan sistem manajemen konten, optimasi SEO, dan desain responsif untuk semua perangkat.",
+      "Keranjang dan tas anyaman bambu berkualitas tinggi dari pengrajin Desa Cikarang. Ramah lingkungan dan tahan lama.",
     image: "/api/placeholder/400/250",
-    price: "Rp 2.500.000",
-    originalPrice: "Rp 3.500.000",
-    badge: "Best Seller",
+    price: "Rp 75.000",
+    originalPrice: "Rp 95.000",
+    badge: "Eco-Friendly",
+    village: "Desa Cikarang, Jawa Barat",
     features: [
-      "Responsive Design",
-      "SEO Optimized",
-      "Admin Panel",
-      "Free Hosting 1 Tahun",
+      "100% Bambu Asli",
+      "Handmade",
+      "Ramah Lingkungan",
+      "Awet & Kuat",
     ],
   },
   {
     id: 2,
-    title: "E-commerce Solution",
+    title: "Batik Tulis Motif Tradisional",
     description:
-      "Platform online shop lengkap dengan payment gateway, inventory management, dan analytics dashboard.",
+      "Batik tulis premium dengan motif khas daerah dari pengrajin berpengalaman puluhan tahun di Desa Laweyan.",
     image: "/api/placeholder/400/250",
-    price: "Rp 4.000.000",
-    originalPrice: "Rp 5.500.000",
-    badge: "Popular",
+    price: "Rp 250.000",
+    originalPrice: "Rp 320.000",
+    badge: "Heritage",
+    village: "Desa Laweyan, Solo",
     features: [
-      "Payment Gateway",
-      "Inventory System",
-      "Analytics",
-      "Mobile App",
+      "Tulis Tangan",
+      "Motif Klasik",
+      "Kain Berkualitas",
+      "Sertifikat Asli",
     ],
   },
   {
     id: 3,
-    title: "Digital Marketing Package",
+    title: "Keripik Singkong Rasa Tradisional",
     description:
-      "Strategi pemasaran digital komprehensif dengan social media management dan Google Ads optimization.",
+      "Keripik singkong renyah dengan bumbu rahasia turun temurun dari UMKM Desa Sukamaju yang sudah terkenal.",
     image: "/api/placeholder/400/250",
-    price: "Rp 1.800.000",
-    originalPrice: "Rp 2.500.000",
-    badge: "New",
+    price: "Rp 25.000",
+    originalPrice: "Rp 35.000",
+    badge: "Best Seller",
+    village: "Desa Sukamaju, Lampung",
     features: [
-      "Social Media",
-      "Google Ads",
-      "Content Strategy",
-      "Monthly Report",
+      "Tanpa Pengawet",
+      "Bumbu Alami",
+      "Renyah Tahan Lama",
+      "Kemasan Higienis",
     ],
   },
   {
     id: 4,
-    title: "Business Consultation",
+    title: "Madu Hutan Murni",
     description:
-      "Konsultasi mendalam untuk strategi bisnis digital dan roadmap pengembangan UMKM jangka panjang.",
+      "Madu hutan murni 100% dari lebah liar Desa Rimba Jaya. Dipanen langsung dari sarang alami di hutan.",
     image: "/api/placeholder/400/250",
-    price: "Rp 1.200.000",
-    originalPrice: "Rp 1.800.000",
-    badge: "Expert",
+    price: "Rp 150.000",
+    originalPrice: "Rp 200.000",
+    badge: "Pure & Natural",
+    village: "Desa Rimba Jaya, Sumatra",
     features: [
-      "1-on-1 Session",
-      "Business Plan",
-      "Market Analysis",
-      "3 Months Support",
+      "100% Murni",
+      "Tanpa Campuran",
+      "Kaya Nutrisi",
+      "Botol Kaca Premium",
     ],
   },
 ];
 
-// Sample reviews data
+// Sample reviews data - Village UMKM Customers
 const reviews = [
   {
     id: 1,
-    name: "Siti Nurhaliza",
-    business: "Warung Siti Bakery",
+    name: "Ibu Sari Wulandari",
+    business: "Pengrajin Anyaman Bambu",
+    village: "Desa Cikarang",
     avatar: "/api/placeholder/64/64",
     rating: 5,
     review:
-      "Website yang dibuat sangat membantu bisnis saya. Pesanan online meningkat 300% dalam 3 bulan pertama!",
+      "Produk anyaman bambu saya sekarang dikenal sampai Jakarta! Kualitas bagus dan pengiriman cepat. Terima kasih tim marketplace!",
     date: "2 minggu lalu",
   },
   {
     id: 2,
-    name: "Ahmad Fadli",
-    business: "Fadli Electronics",
+    name: "Pak Sutrisno",
+    business: "Batik Tulis Tradisional",
+    village: "Desa Laweyan",
     avatar: "/api/placeholder/64/64",
     rating: 5,
     review:
-      "Tim sangat profesional dan responsif. E-commerce platform yang mereka buat mudah digunakan dan fiturnya lengkap.",
+      "Batik tulis saya sekarang bisa dijual online ke seluruh Indonesia. Platform ini sangat membantu UMKM desa seperti saya.",
     date: "1 bulan lalu",
   },
   {
     id: 3,
-    name: "Maya Sari",
-    business: "Maya's Fashion",
+    name: "Ibu Marlina",
+    business: "Keripik Singkong Sukamaju",
+    village: "Desa Sukamaju",
     avatar: "/api/placeholder/64/64",
     rating: 5,
     review:
-      "Digital marketing strategy yang diberikan benar-benar efektif. Social media followers naik drastis dan sales meningkat.",
+      "Pesanan keripik singkong meningkat pesat setelah bergabung. Sekarang saya bisa mengirim ke seluruh Nusantara!",
     date: "3 minggu lalu",
   },
   {
     id: 4,
-    name: "Budi Santoso",
-    business: "Budi Furniture",
+    name: "Pak Hendra",
+    business: "Madu Hutan Rimba Jaya",
+    village: "Desa Rimba Jaya",
     avatar: "/api/placeholder/64/64",
     rating: 5,
     review:
-      "Konsultasi bisnis sangat membantu. Sekarang bisnis saya lebih terstruktur dan profitable. Terima kasih tim!",
+      "Madu hutan murni saya sekarang dipercaya konsumen karena sertifikat kualitas yang jelas. Penjualan naik 400%!",
     date: "1 bulan lalu",
   },
 ];
 
-// Product advantages data
+// Product advantages data - Village UMKM Focus
 const advantages = [
   {
-    icon: Globe,
-    title: "Digital Presence",
+    icon: Heart,
+    title: "Produk Berkualitas Tinggi",
     description:
-      "Bangun kehadiran digital yang kuat dengan website profesional dan strategi online yang tepat sasaran.",
+      "Setiap produk dipilih langsung dari pengrajin terbaik di desa dengan standar kualitas tinggi dan autentik.",
   },
   {
-    icon: TrendingUp,
-    title: "Boost Sales",
+    icon: Leaf,
+    title: "Ramah Lingkungan",
     description:
-      "Tingkatkan penjualan hingga 300% dengan platform e-commerce dan digital marketing yang efektif.",
+      "Mendukung produk berkelanjutan dari bahan alami dan proses produksi yang ramah lingkungan.",
+  },
+  {
+    icon: MapPin,
+    title: "Langsung dari Desa",
+    description:
+      "Produk asli dari berbagai desa di Indonesia dengan keunikan dan cita rasa khas daerah masing-masing.",
   },
   {
     icon: Users,
-    title: "Customer Management",
+    title: "Pemberdayaan UMKM",
     description:
-      "Kelola pelanggan dengan lebih baik melalui sistem CRM terintegrasi dan analytics mendalam.",
+      "Setiap pembelian membantu meningkatkan ekonomi desa dan pemberdayaan masyarakat lokal.",
   },
   {
-    icon: Clock,
-    title: "24/7 Availability",
+    icon: Award,
+    title: "Sertifikat Kualitas",
     description:
-      "Bisnis Anda buka 24 jam dengan sistem otomatis yang melayani pelanggan kapan saja.",
+      "Semua produk telah melalui kontrol kualitas ketat dan memiliki sertifikat halal serta standar nasional.",
   },
   {
-    icon: Shield,
-    title: "Secure & Reliable",
+    icon: TrendingUp,
+    title: "Harga Langsung dari Produsen",
     description:
-      "Keamanan data terjamin dengan backup otomatis dan sistem keamanan berlapis.",
-  },
-  {
-    icon: Zap,
-    title: "Fast Performance",
-    description:
-      "Website super cepat dengan optimasi performa dan loading time kurang dari 3 detik.",
+      "Dapatkan harga terbaik karena membeli langsung dari produsen tanpa perantara yang berlebihan.",
   },
 ];
 
@@ -185,27 +194,49 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-100 py-20">
+      <section className="bg-gradient-to-r from-green-50 to-emerald-100 py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Wujudkan <span className="text-blue-600">Impian Digital</span>{" "}
-              UMKM Anda
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Solusi lengkap digitalisasi bisnis untuk UMKM Indonesia. Dari
-              website profesional hingga strategi marketing yang terbukti
-              efektif.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8">
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Temukan <span className="text-green-600">Produk Asli</span> UMKM
+              Desa
+            </motion.h1>
+            <motion.p
+              className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Marketplace khusus produk UMKM dari berbagai desa di Indonesia.
+              Kualitas terjamin, harga langsung dari produsen, dan mendukung
+              ekonomi lokal.
+            </motion.p>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <Button
+                size="lg"
+                className="text-lg px-8 bg-green-600 hover:bg-green-700"
+              >
                 <Play className="w-5 h-5 mr-2" />
-                Mulai Sekarang
+                Belanja Sekarang
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8">
-                Konsultasi Gratis
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-lg px-8 border-green-600 text-green-600 hover:bg-green-50"
+              >
+                Lihat Semua Produk
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -213,15 +244,21 @@ const HomePage = () => {
       {/* Product Carousel Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Paket Unggulan Kami
+              Produk Pilihan dari Desa
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Pilih solusi yang tepat untuk mengembangkan bisnis UMKM Anda ke
-              level selanjutnya
+              Koleksi terbaik produk UMKM dari berbagai desa di Indonesia dengan
+              kualitas premium dan harga terjangkau
             </p>
-          </div>
+          </motion.div>
 
           <Carousel className="w-full max-w-6xl mx-auto">
             <CarouselContent>
@@ -230,8 +267,15 @@ const HomePage = () => {
                   key={product.id}
                   className="md:basis-1/2 lg:basis-1/3"
                 >
-                  <div className="p-1">
-                    <Card className="h-full hover:shadow-lg transition-shadow">
+                  <motion.div
+                    className="p-1"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: product.id * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
+                  >
+                    <Card className="h-full hover:shadow-lg transition-shadow flex flex-col">
                       <div className="relative">
                         <img
                           src={product.image}
@@ -246,17 +290,25 @@ const HomePage = () => {
                         </Badge>
                       </div>
 
-                      <CardHeader>
-                        <CardTitle className="text-xl">
+                      <CardHeader className="flex-grow-0">
+                        <CardTitle className="text-lg line-clamp-2 min-h-[3.5rem]">
                           {product.title}
                         </CardTitle>
-                        <CardDescription>{product.description}</CardDescription>
+                        <CardDescription className="line-clamp-3 min-h-[4.5rem]">
+                          {product.description}
+                        </CardDescription>
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground mt-2">
+                          <MapPin className="w-4 h-4" />
+                          <span className="line-clamp-1">
+                            {product.village}
+                          </span>
+                        </div>
                       </CardHeader>
 
-                      <CardContent className="flex-1">
+                      <CardContent className="flex-grow">
                         <div className="mb-4">
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-2xl font-bold text-green-600">
+                            <span className="text-xl font-bold text-green-600">
                               {product.price}
                             </span>
                             <span className="text-sm text-muted-foreground line-through">
@@ -265,27 +317,34 @@ const HomePage = () => {
                           </div>
                         </div>
 
-                        <ul className="space-y-2">
-                          {product.features.map((feature, index) => (
-                            <li
-                              key={index}
-                              className="flex items-center text-sm"
-                            >
-                              <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                              {feature}
+                        <ul className="space-y-1">
+                          {product.features
+                            .slice(0, 3)
+                            .map((feature, index) => (
+                              <li
+                                key={index}
+                                className="flex items-center text-sm"
+                              >
+                                <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
+                                {feature}
+                              </li>
+                            ))}
+                          {product.features.length > 3 && (
+                            <li className="text-sm text-muted-foreground">
+                              +{product.features.length - 3} fitur lainnya
                             </li>
-                          ))}
+                          )}
                         </ul>
                       </CardContent>
 
-                      <CardFooter>
-                        <Button className="w-full">
-                          Pilih Paket
+                      <CardFooter className="mt-auto pt-4">
+                        <Button className="w-full bg-green-600 hover:bg-green-700">
+                          Beli Sekarang
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                       </CardFooter>
                     </Card>
-                  </div>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -298,33 +357,46 @@ const HomePage = () => {
       {/* Product Advantages Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Mengapa Memilih Kami?
+              Mengapa Memilih Produk Desa?
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Keunggulan yang membuat bisnis UMKM Anda unggul di era digital
+              Keunggulan produk UMKM desa yang membuat pilihan Anda lebih
+              bermakna dan berkualitas
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advantages.map((advantage, index) => (
-              <Card
+              <motion.div
                 key={index}
-                className="text-center hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
-                <CardHeader>
-                  <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                    <advantage.icon className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <CardTitle className="text-xl">{advantage.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    {advantage.description}
-                  </p>
-                </CardContent>
-              </Card>
+                <Card className="text-center hover:shadow-lg transition-shadow h-full">
+                  <CardHeader>
+                    <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                      <advantage.icon className="w-8 h-8 text-green-600" />
+                    </div>
+                    <CardTitle className="text-xl">{advantage.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      {advantage.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -333,87 +405,120 @@ const HomePage = () => {
       {/* Reviews Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Testimoni Klien
+              Testimoni Pelanggan
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Dengarkan cerita sukses UMKM yang telah bergabung dengan kami
+              Dengarkan cerita kepuasan pelanggan yang telah merasakan kualitas
+              produk UMKM desa
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {reviews.map((review) => (
-              <Card
+            {reviews.map((review, index) => (
+              <motion.div
                 key={review.id}
-                className="hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
               >
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <Avatar>
-                      <AvatarImage src={review.avatar} alt={review.name} />
-                      <AvatarFallback>
-                        {review.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <div className="font-semibold">{review.name}</div>
-                      <div className="text-sm text-muted-foreground">
-                        {review.business}
-                      </div>
-                      <div className="flex items-center mt-1">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                          />
-                        ))}
+                <Card className="hover:shadow-lg transition-shadow h-full">
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <Avatar>
+                        <AvatarImage src={review.avatar} alt={review.name} />
+                        <AvatarFallback>
+                          {review.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <div className="font-semibold">{review.name}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {review.business}
+                        </div>
+                        <div className="flex items-center mt-1">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground italic">
-                    "{review.review}"
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <span className="text-sm text-muted-foreground">
-                    {review.date}
-                  </span>
-                </CardFooter>
-              </Card>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground italic">
+                      "{review.review}"
+                    </p>
+                  </CardContent>
+                  <CardFooter className="flex justify-between items-center">
+                    <span className="text-sm text-muted-foreground">
+                      {review.date}
+                    </span>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <MapPin className="w-3 h-3" />
+                      <span>{review.village}</span>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-green-600 text-white">
+        <motion.div
+          className="container mx-auto px-4 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Siap Mengembangkan UMKM Anda?
+            Mulai Belanja Produk Asli Indonesia?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Konsultasi gratis dengan tim ahli kami dan dapatkan solusi terbaik
-            untuk bisnis Anda
+            Jelajahi ribuan produk UMKM berkualitas dari seluruh desa di
+            Indonesia. Dukung ekonomi lokal dengan setiap pembelian Anda.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Konsultasi Gratis Sekarang
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <Button
+              size="lg"
+              variant="secondary"
+              className="text-lg px-8 bg-white text-green-600 hover:bg-gray-100"
+            >
+              Belanja Sekarang
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 border-white text-white hover:bg-white hover:text-blue-600"
+              className="text-lg px-8 border-white text-white hover:bg-white hover:text-green-600"
             >
-              Lihat Portfolio
+              Lihat Semua Produk
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
     </div>
   );

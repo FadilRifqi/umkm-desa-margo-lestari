@@ -1,4 +1,4 @@
-import { Building2 } from "lucide-react";
+import { Building2, ShoppingBag, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -11,63 +11,69 @@ import {
 } from "@/components/ui/navigation-menu";
 import ListItem from "@/components/ui/listItem";
 
-const services = [
+const productCategories = [
   {
-    title: "Website UMKM",
-    href: "/layanan/website",
+    title: "Kerajinan Tangan",
+    href: "/kategori/kerajinan",
     description:
-      "Pembuatan website profesional untuk UMKM dengan harga terjangkau dan fitur lengkap.",
+      "Anyaman bambu, ukiran kayu, keramik, dan kerajinan tradisional lainnya dari berbagai desa.",
   },
   {
-    title: "E-commerce",
-    href: "/layanan/ecommerce",
+    title: "Makanan & Minuman",
+    href: "/kategori/makanan",
     description:
-      "Platform online shop untuk menjual produk secara digital dengan sistem pembayaran terintegrasi.",
+      "Keripik, makanan tradisional, minuman herbal, dan produk olahan dari bahan lokal.",
   },
   {
-    title: "Digital Marketing",
-    href: "/layanan/digital-marketing",
+    title: "Produk Herbal",
+    href: "/kategori/herbal",
     description:
-      "Strategi pemasaran digital untuk meningkatkan visibilitas dan penjualan online.",
+      "Madu murni, jamu tradisional, minyak herbal, dan produk kesehatan alami.",
   },
   {
-    title: "Konsultasi Bisnis",
-    href: "/layanan/konsultasi",
+    title: "Tekstil & Fashion",
+    href: "/kategori/tekstil",
     description:
-      "Konsultasi strategi bisnis digital untuk mengembangkan UMKM ke level selanjutnya.",
+      "Batik, tenun, pakaian tradisional, dan aksesoris fashion dari pengrajin lokal.",
   },
   {
-    title: "Maintenance & Support",
-    href: "/layanan/support",
+    title: "Produk Pertanian",
+    href: "/kategori/pertanian",
     description:
-      "Layanan maintenance website dan dukungan teknis 24/7 untuk kelancaran bisnis.",
+      "Beras organik, sayuran segar, buah-buahan, dan hasil pertanian langsung dari petani.",
   },
   {
-    title: "Training Digital",
-    href: "/layanan/training",
+    title: "Produk Peternakan",
+    href: "/kategori/peternakan",
     description:
-      "Pelatihan penggunaan platform digital dan strategi marketing online.",
+      "Susu segar, telur organik, daging segar, dan produk olahan dari peternak lokal.",
   },
 ];
 
-const solutions = [
+const villages = [
   {
-    title: "Paket Starter",
-    href: "/paket/starter",
+    title: "Desa Cikarang",
+    href: "/desa/cikarang",
     description:
-      "Solusi website dasar untuk UMKM yang baru memulai digitalisasi.",
+      "Spesialis kerajinan anyaman bambu dan produk ramah lingkungan.",
   },
   {
-    title: "Paket Professional",
-    href: "/paket/professional",
+    title: "Desa Laweyan",
+    href: "/desa/laweyan",
     description:
-      "Website lengkap dengan fitur e-commerce dan sistem manajemen.",
+      "Pusat batik tulis tradisional dengan motif khas Solo yang autentik.",
   },
   {
-    title: "Paket Enterprise",
-    href: "/paket/enterprise",
+    title: "Desa Sukamaju",
+    href: "/desa/sukamaju",
     description:
-      "Solusi komprehensif untuk UMKM yang ingin ekspansi besar-besaran.",
+      "Terkenal dengan keripik singkong dan makanan ringan tradisional.",
+  },
+  {
+    title: "Desa Rimba Jaya",
+    href: "/desa/rimba-jaya",
+    description:
+      "Penghasil madu hutan murni dan produk herbal berkualitas tinggi.",
   },
 ];
 
@@ -78,9 +84,9 @@ const Navbar = () => {
         {/* Logo */}
         <div className="mr-4 hidden md:flex">
           <a className="mr-6 flex items-center space-x-2" href="/">
-            <Building2 className="h-6 w-6" />
-            <span className="hidden font-bold sm:inline-block">
-              Website UMKM
+            <Store className="h-6 w-6 text-green-600" />
+            <span className="hidden font-bold sm:inline-block text-green-700">
+              UMKM Desa
             </span>
           </a>
         </div>
@@ -98,16 +104,16 @@ const Navbar = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Layanan</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Kategori Produk</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  {services.map((service) => (
+                  {productCategories.map((category) => (
                     <ListItem
-                      key={service.title}
-                      title={service.title}
-                      href={service.href}
+                      key={category.title}
+                      title={category.title}
+                      href={category.href}
                     >
-                      {service.description}
+                      {category.description}
                     </ListItem>
                   ))}
                 </ul>
@@ -115,33 +121,33 @@ const Navbar = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Paket</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Desa Mitra</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
+                  <li className="row-span-4">
                     <NavigationMenuLink asChild>
                       <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/paket"
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-green-50 to-green-100 p-6 no-underline outline-none focus:shadow-md"
+                        href="/desa"
                       >
-                        <Building2 className="h-6 w-6" />
+                        <Building2 className="h-6 w-6 text-green-600" />
                         <div className="mb-2 mt-4 text-lg font-medium">
-                          Pilih Paket Terbaik
+                          Jelajahi Desa
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          Solusi website yang sesuai dengan kebutuhan dan budget
-                          UMKM Anda.
+                          Temukan produk autentik langsung dari berbagai desa di
+                          Indonesia.
                         </p>
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  {solutions.map((solution) => (
+                  {villages.map((village) => (
                     <ListItem
-                      key={solution.title}
-                      title={solution.title}
-                      href={solution.href}
+                      key={village.title}
+                      title={village.title}
+                      href={village.href}
                     >
-                      {solution.description}
+                      {village.description}
                     </ListItem>
                   ))}
                 </ul>
@@ -162,7 +168,7 @@ const Navbar = () => {
                 className={navigationMenuTriggerStyle()}
                 href="/kontak"
               >
-                Kontak
+                Bantuan
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -175,10 +181,17 @@ const Navbar = () => {
           </div>
           <nav className="flex items-center space-x-2">
             <Button variant="outline" size="sm" asChild>
-              <a href="/login">Masuk</a>
+              <a href="/keranjang">
+                <ShoppingBag className="w-4 h-4 mr-2" />
+                Keranjang
+              </a>
             </Button>
-            <Button size="sm" asChild>
-              <a href="/konsultasi">Konsultasi Gratis</a>
+            <Button
+              size="sm"
+              className="bg-green-600 hover:bg-green-700"
+              asChild
+            >
+              <a href="/jual">Jual Produk</a>
             </Button>
           </nav>
         </div>
