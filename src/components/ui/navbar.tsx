@@ -1,5 +1,7 @@
-import { Building2, ShoppingBag, Store } from "lucide-react";
+import { Building2, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,37 +18,25 @@ const productCategories = [
     title: "Kerajinan Tangan",
     href: "/kategori/kerajinan",
     description:
-      "Anyaman bambu, ukiran kayu, keramik, dan kerajinan tradisional lainnya dari berbagai desa.",
+      "Anyaman bambu, ukiran kayu, batik, keramik, dan kerajinan tradisional lainnya dari berbagai desa.",
   },
   {
     title: "Makanan & Minuman",
     href: "/kategori/makanan",
     description:
-      "Keripik, makanan tradisional, minuman herbal, dan produk olahan dari bahan lokal.",
-  },
-  {
-    title: "Produk Herbal",
-    href: "/kategori/herbal",
-    description:
-      "Madu murni, jamu tradisional, minyak herbal, dan produk kesehatan alami.",
-  },
-  {
-    title: "Tekstil & Fashion",
-    href: "/kategori/tekstil",
-    description:
-      "Batik, tenun, pakaian tradisional, dan aksesoris fashion dari pengrajin lokal.",
+      "Keripik, camilan tradisional, minuman herbal, dan produk olahan dari bahan lokal.",
   },
   {
     title: "Produk Pertanian",
     href: "/kategori/pertanian",
     description:
-      "Beras organik, sayuran segar, buah-buahan, dan hasil pertanian langsung dari petani.",
+      "Beras organik, sayuran segar, buah-buahan, madu murni dan hasil pertanian langsung dari petani.",
   },
   {
-    title: "Produk Peternakan",
-    href: "/kategori/peternakan",
+    title: "Fashion & Aksesoris",
+    href: "/kategori/fashion",
     description:
-      "Susu segar, telur organik, daging segar, dan produk olahan dari peternak lokal.",
+      "Pakaian tradisional, tas handmade, perhiasan, dan aksesoris fashion dari pengrajin lokal.",
   },
 ];
 
@@ -78,16 +68,47 @@ const villages = [
 ];
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+      <div className="container mx-auto flex h-16 items-center px-4">
         {/* Logo */}
         <div className="mr-4 hidden md:flex">
-          <a className="mr-6 flex items-center space-x-2" href="/">
-            <Store className="h-6 w-6 text-green-600" />
+          <a href="/" className="mr-6 flex items-center space-x-2">
+            <Building2 className="h-6 w-6 text-green-600" />
             <span className="hidden font-bold sm:inline-block text-green-700">
-              UMKM Desa
+              UMKM Desa Margo Lestari
             </span>
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <div className="mr-4 flex md:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleMobileMenu}
+            className="px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
+        </div>
+
+        {/* Mobile Logo */}
+        <div className="flex flex-1 items-center justify-start md:hidden">
+          <a href="/" className="flex items-center space-x-2">
+            <Building2 className="h-6 w-6 text-green-600" />
+            <span className="font-bold text-sm text-green-700">UMKM Desa</span>
           </a>
         </div>
 
@@ -157,6 +178,15 @@ const Navbar = () => {
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
+                href="/produk"
+              >
+                Semua Produk
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
                 href="/tentang"
               >
                 Tentang Kami
@@ -174,28 +204,70 @@ const Navbar = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Right side buttons */}
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* Mobile menu button can be added here */}
-          </div>
+        {/* Right side - Theme Toggle */}
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center space-x-2">
-            <Button variant="outline" size="sm" asChild>
-              <a href="/keranjang">
-                <ShoppingBag className="w-4 h-4 mr-2" />
-                Keranjang
-              </a>
-            </Button>
-            <Button
-              size="sm"
-              className="bg-green-600 hover:bg-green-700"
-              asChild
-            >
-              <a href="/jual">Jual Produk</a>
-            </Button>
+            <ThemeToggle />
           </nav>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="border-t bg-background md:hidden">
+          <div className="container mx-auto px-4 py-4">
+            <nav className="flex flex-col space-y-4">
+              <a
+                href="/"
+                className="text-sm font-medium hover:text-green-600 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Beranda
+              </a>
+              <a
+                href="/produk"
+                className="text-sm font-medium hover:text-green-600 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Semua Produk
+              </a>
+              <a
+                href="/tentang"
+                className="text-sm font-medium hover:text-green-600 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Tentang Kami
+              </a>
+              <a
+                href="/kontak"
+                className="text-sm font-medium hover:text-green-600 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Bantuan
+              </a>
+              
+              {/* Mobile Category Links */}
+              <div className="pt-4 border-t">
+                <h3 className="text-sm font-semibold mb-3 text-muted-foreground">
+                  Kategori Produk
+                </h3>
+                <div className="space-y-2">
+                  {productCategories.map((category) => (
+                    <a
+                      key={category.title}
+                      href={category.href}
+                      className="block text-sm hover:text-green-600 transition-colors pl-4"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {category.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

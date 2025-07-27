@@ -1,19 +1,22 @@
 import type { ReactNode } from "react";
 import Navbar from "../navbar";
 import Footer from "../footer";
+import Breadcrumb from "../breadcrumb";
 
 interface LayoutProps {
   children: ReactNode;
+  showBreadcrumb?: boolean;
 }
 
-const layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, showBreadcrumb = true }: LayoutProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow min-h-screen">{children}</main>
+      {showBreadcrumb && <Breadcrumb />}
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   );
 };
 
-export default layout;
+export default Layout;

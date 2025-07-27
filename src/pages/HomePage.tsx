@@ -29,6 +29,7 @@ import {
   Leaf,
 } from "lucide-react";
 import { motion } from "motion/react";
+import { Link } from "react-router";
 
 // Sample data for carousel - Village UMKM Products
 const products = [
@@ -225,16 +226,20 @@ const HomePage = () => {
               <Button
                 size="lg"
                 className="text-lg px-8 bg-green-600 hover:bg-green-700"
+                asChild
               >
-                <Play className="w-5 h-5 mr-2" />
-                Belanja Sekarang
+                <Link to="/produk">
+                  <Play className="w-5 h-5 mr-2" />
+                  Belanja Sekarang
+                </Link>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 className="text-lg px-8 border-green-600 text-green-600 hover:bg-green-50"
+                asChild
               >
-                Lihat Semua Produk
+                <Link to="/kategori">Lihat Semua Produk</Link>
               </Button>
             </motion.div>
           </div>
@@ -338,9 +343,14 @@ const HomePage = () => {
                       </CardContent>
 
                       <CardFooter className="mt-auto pt-4">
-                        <Button className="w-full bg-green-600 hover:bg-green-700">
-                          Beli Sekarang
-                          <ArrowRight className="w-4 h-4 ml-2" />
+                        <Button
+                          className="w-full bg-green-600 hover:bg-green-700"
+                          asChild
+                        >
+                          <Link to={`/produk/${product.id}`}>
+                            Beli Sekarang
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Link>
                         </Button>
                       </CardFooter>
                     </Card>
@@ -507,15 +517,17 @@ const HomePage = () => {
               size="lg"
               variant="secondary"
               className="text-lg px-8 bg-white text-green-600 hover:bg-gray-100"
+              asChild
             >
-              Belanja Sekarang
+              <Link to="/produk">Belanja Sekarang</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="text-lg px-8 border-white text-white hover:bg-white hover:text-green-600"
+              asChild
             >
-              Lihat Semua Produk
+              <Link to="/kategori">Lihat Semua Produk</Link>
             </Button>
           </motion.div>
         </motion.div>
