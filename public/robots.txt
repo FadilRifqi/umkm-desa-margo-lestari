@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://umkmmargolestari.my.id/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Allow search engines to crawl product images
+User-agent: Googlebot
+Allow: /images/
+Allow: /api/placeholder/
+
+# Block admin or private areas (if any in the future)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Allow all other content
+Allow: /
+Allow: /produk/
+Allow: /kategori/
+Allow: /tentang
+Allow: /kontak

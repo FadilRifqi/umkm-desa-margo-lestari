@@ -26,6 +26,8 @@ import {
 import { motion } from "motion/react";
 import { Link, useParams, useNavigate } from "react-router";
 import { useState } from "react";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { generateProductSchema } from "@/utils/seo";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
@@ -53,6 +55,9 @@ const ProductDetailPage = () => {
   const discount = Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   );
+
+  const productUrl = `https://umkmmargolestari.my.id/produk/${product.id}`;
+  const productSchema = generateProductSchema(product, productUrl);
 
   const handleWhatsAppContact = () => {
     const message = `Halo, saya tertarik dengan produk *${
@@ -102,6 +107,16 @@ const ProductDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={product.title}
+        description={product.fullDescription}
+        keywords={`${product.title}, ${product.category}, ${product.village}, ${product.province}, UMKM, produk lokal, ${product.seller}`}
+        image={product.images[0]}
+        url={productUrl}
+        type="product"
+        schemaData={productSchema}
+      />
+
       {/* Back Button */}
       <div className="container mx-auto px-4 py-4">
         <Button
@@ -209,7 +224,9 @@ const ProductDetailPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">{product.title}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold mb-2">
+                {product.title}
+              </h1>
 
               {/* Rating and Reviews */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3">
@@ -224,12 +241,17 @@ const ProductDetailPage = () => {
                       }`}
                     />
                   ))}
-                  <span className="font-semibold text-sm md:text-base">{product.rating}</span>
+                  <span className="font-semibold text-sm md:text-base">
+                    {product.rating}
+                  </span>
                   <span className="text-muted-foreground text-sm">
                     ({product.reviewCount} ulasan)
                   </span>
                 </div>
-                <Separator orientation="vertical" className="h-4 hidden sm:block" />
+                <Separator
+                  orientation="vertical"
+                  className="h-4 hidden sm:block"
+                />
                 <span className="text-muted-foreground text-sm">
                   {product.sold} terjual
                 </span>
@@ -464,7 +486,9 @@ const ProductDetailPage = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-xl md:text-2xl font-bold mb-6">Produk Serupa</h2>
+            <h2 className="text-xl md:text-2xl font-bold mb-6">
+              Produk Serupa
+            </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {relatedProducts.map((relatedProduct) => (
                 <RelatedProductCard

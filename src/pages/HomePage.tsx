@@ -30,6 +30,11 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router";
+import { SEOHead } from "@/components/seo/SEOHead";
+import {
+  generateOrganizationSchema,
+  generateLocalBusinessSchema,
+} from "@/utils/seo";
 
 // Sample data for carousel - Village UMKM Products
 const products = [
@@ -192,8 +197,19 @@ const advantages = [
 ];
 
 const HomePage = () => {
+  const organizationSchema = generateOrganizationSchema();
+  const localBusinessSchema = generateLocalBusinessSchema();
+
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Beranda"
+        description="Temukan produk UMKM terbaik dari Desa Margo Lestari, Lampung Selatan. Kerajinan tangan, makanan tradisional, produk pertanian organik, dan fashion lokal berkualitas tinggi langsung dari pengrajin desa."
+        keywords="UMKM Desa Margo Lestari, produk unggulan lampung, kerajinan tangan, makanan tradisional, pertanian organik, fashion lokal, umkm indonesia, produk desa, margo lestari lampung selatan"
+        url="https://umkmmargolestari.my.id"
+        schemaData={[organizationSchema, localBusinessSchema]}
+      />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-green-50 to-emerald-100 py-20">
         <div className="container mx-auto px-4">

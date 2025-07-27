@@ -33,6 +33,8 @@ import {
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { useState, useMemo } from "react";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { generateCategorySchema } from "@/utils/seo";
 
 const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -141,8 +143,23 @@ const ProductsPage = () => {
     selectedCategories.length +
     selectedProvinces.length;
 
+  const productsUrl = "https://umkmmargolestari.my.id/produk";
+  const allProductsSchema = generateCategorySchema(
+    "Semua Produk UMKM",
+    filteredProducts,
+    productsUrl
+  );
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Semua Produk UMKM"
+        description="Jelajahi semua produk UMKM unggulan dari Desa Margo Lestari, Lampung Selatan. Kerajinan tangan, makanan tradisional, produk pertanian organik, fashion lokal, dan banyak lagi produk berkualitas langsung dari pengrajin desa."
+        keywords="semua produk UMKM, marketplace UMKM, produk desa, kerajinan tangan, makanan tradisional, pertanian organik, fashion lokal, UMKM Lampung Selatan, Margo Lestari, produk unggulan indonesia"
+        url={productsUrl}
+        schemaData={allProductsSchema}
+      />
+
       {/* Header Section */}
       <section className="bg-gradient-to-r from-green-50 to-emerald-100 py-12">
         <div className="container mx-auto px-4">

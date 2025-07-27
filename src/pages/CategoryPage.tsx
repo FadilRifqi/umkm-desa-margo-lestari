@@ -36,6 +36,8 @@ import {
 import { motion } from "motion/react";
 import { Link, useParams } from "react-router";
 import { useState, useMemo } from "react";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { generateCategorySchema } from "@/utils/seo";
 
 const CategoryPage = () => {
   const { categorySlug, subcategorySlug } = useParams();
@@ -126,8 +128,25 @@ const CategoryPage = () => {
     ? subcategory.description
     : category.description;
 
+  const categoryUrl = subcategory
+    ? `https://umkmmargolestari.my.id/kategori/${categorySlug}/${subcategorySlug}`
+    : `https://umkmmargolestari.my.id/kategori/${categorySlug}`;
+  const categorySchema = generateCategorySchema(
+    pageTitle,
+    filteredProducts,
+    categoryUrl
+  );
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={pageTitle}
+        description={`${pageDescription} - Temukan produk ${pageTitle.toLowerCase()} terbaik dari UMKM Desa Margo Lestari, Lampung Selatan.`}
+        keywords={`${pageTitle}, UMKM Desa Margo Lestari, ${categorySlug}, produk ${pageTitle.toLowerCase()}, lampung selatan, umkm indonesia`}
+        url={categoryUrl}
+        schemaData={categorySchema}
+      />
+
       {/* Header Section */}
       <section className="bg-gradient-to-r from-green-50 to-emerald-100 py-12">
         <div className="container mx-auto px-4">
