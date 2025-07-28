@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate": "ts-node src/scripts/generate.ts",
-    "build": "tsc -b && npm run generate && vite build",
+    "generate": "ts-node src/scripts/generate",
+    "build": "npm install --save-dev ts-node && tsc -b && npm run generate && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
