@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "generate": "ts-node src/scripts/generate.ts",
-    "build": "npm install --save-dev ts-node && tsc -b && npm run generate && vite build",
+    "build": "tsc -b && npm run generate && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
