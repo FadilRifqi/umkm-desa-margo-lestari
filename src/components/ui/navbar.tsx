@@ -40,14 +40,6 @@ const productCategories = [
   },
 ];
 
-const villages = [
-  {
-    title: "Desa Margo Lestari",
-    href: "/desa/margo-lestari",
-    description: "Segala produk unggulan dari Desa Margo Lestari.",
-  },
-];
-
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
