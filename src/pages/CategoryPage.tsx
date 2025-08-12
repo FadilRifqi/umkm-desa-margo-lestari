@@ -38,6 +38,7 @@ import { Link, useParams } from "react-router";
 import { useState, useMemo } from "react";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { generateCategorySchema } from "@/utils/seo";
+import { siteConfig } from "@/config/site";
 
 const CategoryPage = () => {
   const { categorySlug, subcategorySlug } = useParams();
@@ -128,9 +129,10 @@ const CategoryPage = () => {
     ? subcategory.description
     : category.description;
 
+  const base = siteConfig.url.replace(/\/$/, "");
   const categoryUrl = subcategory
-    ? `https://umkmmargolestari.my.id/kategori/${categorySlug}/${subcategorySlug}`
-    : `https://umkmmargolestari.my.id/kategori/${categorySlug}`;
+    ? `${base}/kategori/${categorySlug}/${subcategorySlug}`
+    : `${base}/kategori/${categorySlug}`;
   const categorySchema = generateCategorySchema(
     pageTitle,
     filteredProducts,

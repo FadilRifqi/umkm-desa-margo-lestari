@@ -28,6 +28,7 @@ import { Link, useParams, useNavigate } from "react-router";
 import { useState } from "react";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { generateProductSchema } from "@/utils/seo";
+import { siteConfig } from "@/config/site";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
@@ -56,7 +57,9 @@ const ProductDetailPage = () => {
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   );
 
-  const productUrl = `https://umkmmargolestari.my.id/produk/${product.id}`;
+  const productUrl = `${siteConfig.url.replace(/\/$/, "")}/produk/${
+    product.id
+  }`;
   const productSchema = generateProductSchema(product, productUrl);
 
   const handleWhatsAppContact = () => {

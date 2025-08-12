@@ -42,28 +42,9 @@ const productCategories = [
 
 const villages = [
   {
-    title: "Desa Cikarang",
-    href: "/desa/cikarang",
-    description:
-      "Spesialis kerajinan anyaman bambu dan produk ramah lingkungan.",
-  },
-  {
-    title: "Desa Laweyan",
-    href: "/desa/laweyan",
-    description:
-      "Pusat batik tulis tradisional dengan motif khas Solo yang autentik.",
-  },
-  {
-    title: "Desa Sukamaju",
-    href: "/desa/sukamaju",
-    description:
-      "Terkenal dengan keripik singkong dan makanan ringan tradisional.",
-  },
-  {
-    title: "Desa Rimba Jaya",
-    href: "/desa/rimba-jaya",
-    description:
-      "Penghasil madu hutan murni dan produk herbal berkualitas tinggi.",
+    title: "Desa Margo Lestari",
+    href: "/desa/margo-lestari",
+    description: "Segala produk unggulan dari Desa Margo Lestari.",
   },
 ];
 
@@ -135,40 +116,6 @@ const Navbar = () => {
                       href={category.href}
                     >
                       {category.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Desa Mitra</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-green-50 to-green-100 p-6 no-underline outline-none focus:shadow-md"
-                        href="/desa"
-                      >
-                        <Building2 className="h-6 w-6 text-green-600" />
-                        <div className="mb-2 mt-4 text-lg font-medium">
-                          Jelajahi Desa
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Temukan produk autentik langsung dari berbagai desa di
-                          Indonesia.
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  {villages.map((village) => (
-                    <ListItem
-                      key={village.title}
-                      title={village.title}
-                      href={village.href}
-                    >
-                      {village.description}
                     </ListItem>
                   ))}
                 </ul>

@@ -3,7 +3,7 @@ export const siteConfig = {
   description:
     import.meta.env.VITE_SITE_DESCRIPTION ||
     "Temukan produk UMKM terbaik dari Desa Margo Lestari, Lampung Selatan. Kerajinan tangan, makanan tradisional, produk pertanian organik, dan fashion lokal berkualitas tinggi langsung dari pengrajin desa.",
-  url: import.meta.env.VITE_SITE_URL || "https://umkmmargolestari.my.id",
+  url: import.meta.env.VITE_SITE_URL || "https://www.umkmmargolestari.my.id",
 
   social: {
     facebook:

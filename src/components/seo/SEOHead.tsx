@@ -30,7 +30,7 @@ const seoDefaults: SEODefaults = {
   defaultKeywords:
     "UMKM Desa Margo Lestari, UMKM Lampung Selatan, kerajinan tangan lampung, makanan tradisional lampung, produk pertanian organik, fashion lokal, umkm desa, margo lestari, lampung, produk unggulan desa",
   defaultImage: "/og-image.jpg",
-  siteUrl: "https://umkmmargolestari.my.id",
+  siteUrl: "https://www.umkmmargolestari.my.id",
   twitterHandle: "@umkm_margo_lestari",
   locale: "id_ID",
   region: "ID-LA",

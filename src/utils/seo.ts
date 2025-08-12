@@ -102,8 +102,8 @@ export function generateOrganizationSchema() {
     name: "UMKM Desa Margo Lestari",
     description:
       "Marketplace produk UMKM unggulan dari Desa Margo Lestari, Lampung Selatan",
-    url: "https://umkmmargolestari.my.id",
-    logo: "https://umkmmargolestari.my.id/logo.png",
+    url: "https://www.umkmmargolestari.my.id",
+    logo: "https://www.umkmmargolestari.my.id/logo.png",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Margo Lestari",
@@ -141,7 +141,7 @@ export function generateLocalBusinessSchema() {
       latitude: -5.424,
       longitude: 105.266,
     },
-    url: "https://umkmmargolestari.my.id",
+    url: "https://www.umkmmargolestari.my.id",
     telephone: "+628123456789",
     openingHours: "Mo-Su 08:00-17:00",
     servesCuisine: "Indonesian",

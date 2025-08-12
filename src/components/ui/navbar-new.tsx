@@ -42,28 +42,9 @@ const productCategories = [
 
 const villages = [
   {
-    title: "Desa Cikarang",
-    href: "/desa/cikarang",
-    description:
-      "Spesialis kerajinan anyaman bambu dan produk ramah lingkungan.",
-  },
-  {
-    title: "Desa Laweyan",
-    href: "/desa/laweyan",
-    description:
-      "Pusat batik tulis tradisional dengan motif khas Solo yang autentik.",
-  },
-  {
-    title: "Desa Sukamaju",
-    href: "/desa/sukamaju",
-    description:
-      "Terkenal dengan keripik singkong dan makanan ringan tradisional.",
-  },
-  {
-    title: "Desa Rimba Jaya",
-    href: "/desa/rimba-jaya",
-    description:
-      "Penghasil madu hutan murni dan produk herbal berkualitas tinggi.",
+    title: "Desa Margo Lestari",
+    href: "/desa/margo-lestari",
+    description: "Segala produk unggulan dari Desa Margo Lestari.",
   },
 ];
 

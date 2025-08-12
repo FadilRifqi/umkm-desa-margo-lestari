@@ -174,8 +174,8 @@ export const products: Product[] = [
       "/api/placeholder/600/400",
     ],
     thumbnail: "/api/placeholder/400/250",
-    village: "Desa Sukamaju",
-    province: "Lampung",
+    village: "Desa Margo Lestari",
+    province: "Lampung Selatan",
     seller: "UMKM Keripik Mama Sari",
     sellerContact: {
       whatsapp: "6281234567892",
@@ -225,7 +225,7 @@ export const products: Product[] = [
     ],
     thumbnail: "/api/placeholder/400/250",
     village: "Desa Margo Lestari",
-    province: "Sumatra Utara",
+    province: "Lampung Selatan",
     seller: "Pak RT",
     sellerContact: {
       whatsapp: "6281234567893",

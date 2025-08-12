@@ -35,6 +35,7 @@ import { Link } from "react-router";
 import { useState, useMemo } from "react";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { generateCategorySchema } from "@/utils/seo";
+import { siteConfig } from "@/config/site";
 
 const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -143,7 +144,7 @@ const ProductsPage = () => {
     selectedCategories.length +
     selectedProvinces.length;
 
-  const productsUrl = "https://umkmmargolestari.my.id/produk";
+  const productsUrl = `${siteConfig.url.replace(/\/$/, "")}/produk`;
   const allProductsSchema = generateCategorySchema(
     "Semua Produk UMKM",
     filteredProducts,

@@ -1,7 +1,7 @@
 import { products, categories } from "@/data/database";
 
 export function generateSitemap() {
-  const baseUrl = "https://umkmmargolestari.my.id";
+  const baseUrl = "https://www.umkmmargolestari.my.id";
   const currentDate = new Date().toISOString().split("T")[0];
 
   const staticPages = [
@@ -57,7 +57,7 @@ ${allPages
 }
 
 export function generateRobotsTxt() {
-  const baseUrl = "https://umkmmargolestari.my.id";
+  const baseUrl = "https://www.umkmmargolestari.my.id";
 
   return `User-agent: *
 Allow: /

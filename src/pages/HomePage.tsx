@@ -35,78 +35,13 @@ import {
   generateOrganizationSchema,
   generateLocalBusinessSchema,
 } from "@/utils/seo";
+import { siteConfig } from "@/config/site";
 
-// Sample data for carousel - Village UMKM Products
-const products = [
-  {
-    id: 1,
-    title: "Kerajinan Tangan Anyaman Bambu",
-    description:
-      "Keranjang dan tas anyaman bambu berkualitas tinggi dari pengrajin Desa Cikarang. Ramah lingkungan dan tahan lama.",
-    image: "/api/placeholder/400/250",
-    price: "Rp 75.000",
-    originalPrice: "Rp 95.000",
-    badge: "Eco-Friendly",
-    village: "Desa Cikarang, Jawa Barat",
-    features: [
-      "100% Bambu Asli",
-      "Handmade",
-      "Ramah Lingkungan",
-      "Awet & Kuat",
-    ],
-  },
-  {
-    id: 2,
-    title: "Batik Tulis Motif Tradisional",
-    description:
-      "Batik tulis premium dengan motif khas daerah dari pengrajin berpengalaman puluhan tahun di Desa Laweyan.",
-    image: "/api/placeholder/400/250",
-    price: "Rp 250.000",
-    originalPrice: "Rp 320.000",
-    badge: "Heritage",
-    village: "Desa Laweyan, Solo",
-    features: [
-      "Tulis Tangan",
-      "Motif Klasik",
-      "Kain Berkualitas",
-      "Sertifikat Asli",
-    ],
-  },
-  {
-    id: 3,
-    title: "Keripik Singkong Rasa Tradisional",
-    description:
-      "Keripik singkong renyah dengan bumbu rahasia turun temurun dari UMKM Desa Sukamaju yang sudah terkenal.",
-    image: "/api/placeholder/400/250",
-    price: "Rp 25.000",
-    originalPrice: "Rp 35.000",
-    badge: "Best Seller",
-    village: "Desa Sukamaju, Lampung",
-    features: [
-      "Tanpa Pengawet",
-      "Bumbu Alami",
-      "Renyah Tahan Lama",
-      "Kemasan Higienis",
-    ],
-  },
-  {
-    id: 4,
-    title: "Madu Hutan Murni",
-    description:
-      "Madu hutan murni 100% dari lebah liar Desa Rimba Jaya. Dipanen langsung dari sarang alami di hutan.",
-    image: "/api/placeholder/400/250",
-    price: "Rp 150.000",
-    originalPrice: "Rp 200.000",
-    badge: "Pure & Natural",
-    village: "Desa Rimba Jaya, Sumatra",
-    features: [
-      "100% Murni",
-      "Tanpa Campuran",
-      "Kaya Nutrisi",
-      "Botol Kaca Premium",
-    ],
-  },
-];
+// Sample data for carousel - Village UMKM Products get products from database.ts
+import { products } from "@/data/database";
+// show 3 of random products from products array
+const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 3);
+// show in carousel
 
 // Sample reviews data - Village UMKM Customers
 const reviews = [
@@ -206,7 +141,7 @@ const HomePage = () => {
         title="Beranda"
         description="Temukan produk UMKM terbaik dari Desa Margo Lestari, Lampung Selatan. Kerajinan tangan, makanan tradisional, produk pertanian organik, dan fashion lokal berkualitas tinggi langsung dari pengrajin desa."
         keywords="UMKM Desa Margo Lestari, produk unggulan lampung, kerajinan tangan, makanan tradisional, pertanian organik, fashion lokal, umkm indonesia, produk desa, margo lestari lampung selatan"
-        url="https://umkmmargolestari.my.id"
+        url={siteConfig.url}
         schemaData={[organizationSchema, localBusinessSchema]}
       />
 
@@ -229,9 +164,9 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Marketplace khusus produk UMKM dari berbagai desa di Indonesia.
-              Kualitas terjamin, harga langsung dari produsen, dan mendukung
-              ekonomi lokal.
+              Dapatkan produk-produk unggulan dari UMKM Desa Margo Lestari yang
+              berkualitas tinggi dan harga terjangkau. Setiap produk
+              mencerminkan kearifan lokal dan keunikan budaya desa.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -283,7 +218,7 @@ const HomePage = () => {
 
           <Carousel className="w-full max-w-6xl mx-auto">
             <CarouselContent>
-              {products.map((product) => (
+              {randomProducts.map((product, index) => (
                 <CarouselItem
                   key={product.id}
                   className="md:basis-1/2 lg:basis-1/3"
@@ -292,23 +227,27 @@ const HomePage = () => {
                     className="p-1"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: product.id * 0.1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ y: -5 }}
                   >
                     <Card className="h-full hover:shadow-lg transition-shadow flex flex-col">
                       <div className="relative">
                         <img
-                          src={product.image}
+                          src={product.thumbnail || product.images[0]}
                           alt={product.title}
                           className="w-full h-48 object-cover rounded-t-lg"
                         />
-                        <Badge
-                          className="absolute top-3 left-3"
-                          variant="secondary"
-                        >
-                          {product.badge}
-                        </Badge>
+                        {(product.isBestSeller || product.isNewProduct) && (
+                          <Badge
+                            className="absolute top-3 left-3"
+                            variant="secondary"
+                          >
+                            {product.isBestSeller
+                              ? "Best Seller"
+                              : "Produk Baru"}
+                          </Badge>
+                        )}
                       </div>
 
                       <CardHeader className="flex-grow-0">
@@ -519,8 +458,8 @@ const HomePage = () => {
             Mulai Belanja Produk Asli Indonesia?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Jelajahi ribuan produk UMKM berkualitas dari seluruh desa di
-            Indonesia. Dukung ekonomi lokal dengan setiap pembelian Anda.
+            Jelajahi Produk Unggulan dari Desa Margo Lestari dan Dukung UMKM
+            Lokal
           </p>
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -539,8 +478,8 @@ const HomePage = () => {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="text-lg px-8 border-white text-white hover:bg-white hover:text-green-600"
+              variant="secondary"
+              className="text-lg px-8 bg-white text-green-600 hover:bg-gray-100"
               asChild
             >
               <Link to="/kategori">Lihat Semua Produk</Link>
