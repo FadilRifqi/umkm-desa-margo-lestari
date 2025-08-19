@@ -263,9 +263,11 @@ const ProductDetailPage = () => {
               {/* Location */}
               <div className="flex items-center gap-1 text-muted-foreground mb-4">
                 <MapPin className="w-4 h-4" />
-                <span className="text-sm">
-                  {product.village}, {product.province}
-                </span>
+                <a href={product.location}>
+                  <span className="text-sm">
+                    {product.village}, {product.province}
+                  </span>
+                </a>
               </div>
 
               {/* Price */}
@@ -456,9 +458,11 @@ const ProductDetailPage = () => {
                     <h3 className="text-lg font-semibold">{product.seller}</h3>
                     <div className="flex items-center gap-1 text-muted-foreground mb-2">
                       <MapPin className="w-4 h-4" />
-                      <span>
-                        {product.village}, {product.province}
-                      </span>
+                      <a href={product.location}>
+                        <span>
+                          {product.village}, {product.province}
+                        </span>
+                      </a>
                     </div>
                     <div className="flex items-center gap-4 text-sm">
                       <div className="flex items-center gap-1">
