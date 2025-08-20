@@ -80,6 +80,12 @@ const ProductDetailPage = () => {
     }
   };
 
+  const handleTikTokLink = () => {
+    if (product.sellerContact.tiktok) {
+      window.open(product.sellerContact.tiktok, "_blank");
+    }
+  };
+
   const handleTokopediaLink = () => {
     if (product.sellerContact.tokopedia) {
       window.open(product.sellerContact.tokopedia, "_blank");
@@ -322,6 +328,16 @@ const ProductDetailPage = () => {
                       Beli di Shopee
                     </Button>
                   )}
+                  {product.sellerContact.tiktok && (
+                    <Button
+                      variant="outline"
+                      onClick={handleTikTokLink}
+                      className="flex-1 border-gray-500 text-gray-600 hover:bg-gray-50"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Beli di TikTok
+                    </Button>
+                  )}
                   {product.sellerContact.tokopedia && (
                     <Button
                       variant="outline"
@@ -446,7 +462,7 @@ const ProductDetailPage = () => {
               <CardContent>
                 <div className="flex items-start gap-4">
                   <Avatar className="w-16 h-16">
-                    <AvatarImage src="/api/placeholder/64/64" />
+                    <AvatarImage src={product.avatar} />
                     <AvatarFallback>
                       {product.seller
                         .split(" ")
