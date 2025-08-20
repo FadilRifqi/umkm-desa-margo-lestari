@@ -38,58 +38,22 @@ import {
 import { siteConfig } from "@/config/site";
 
 // Sample data for carousel - Village UMKM Products get products from database.ts
-import { products } from "@/data/database";
+import { products, getReviewsByProductId } from "@/data/database";
 // show 3 of random products from products array
 const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 3);
 // show in carousel
 
-// Sample reviews data - Village UMKM Customers
-const reviews = [
-  {
-    id: 1,
-    name: "Ibu Sari Wulandari",
-    business: "Pengrajin Anyaman Bambu",
-    village: "Desa Cikarang",
-    avatar: "/api/placeholder/64/64",
-    rating: 5,
-    review:
-      "Produk anyaman bambu saya sekarang dikenal sampai Jakarta! Kualitas bagus dan pengiriman cepat. Terima kasih tim marketplace!",
-    date: "2 minggu lalu",
-  },
-  {
-    id: 2,
-    name: "Pak Sutrisno",
-    business: "Batik Tulis Tradisional",
-    village: "Desa Laweyan",
-    avatar: "/api/placeholder/64/64",
-    rating: 5,
-    review:
-      "Batik tulis saya sekarang bisa dijual online ke seluruh Indonesia. Platform ini sangat membantu UMKM desa seperti saya.",
-    date: "1 bulan lalu",
-  },
-  {
-    id: 3,
-    name: "Ibu Marlina",
-    business: "Keripik Singkong Sukamaju",
-    village: "Desa Sukamaju",
-    avatar: "/api/placeholder/64/64",
-    rating: 5,
-    review:
-      "Pesanan keripik singkong meningkat pesat setelah bergabung. Sekarang saya bisa mengirim ke seluruh Nusantara!",
-    date: "3 minggu lalu",
-  },
-  {
-    id: 4,
-    name: "Pak Hendra",
-    business: "Madu Hutan Rimba Jaya",
-    village: "Desa Rimba Jaya",
-    avatar: "/api/placeholder/64/64",
-    rating: 5,
-    review:
-      "Madu hutan murni saya sekarang dipercaya konsumen karena sertifikat kualitas yang jelas. Penjualan naik 400%!",
-    date: "1 bulan lalu",
-  },
-];
+// Build homepage testimonials from product reviews in database.ts
+const topReviewedProducts = [...products]
+  .sort((a, b) => b.reviewCount - a.reviewCount)
+  .slice(0, 6);
+const reviewShowcase = topReviewedProducts
+  .flatMap((p) => {
+    const rs = getReviewsByProductId(p.id);
+    // take only 1 review per product for diversity
+    return rs.slice(0, 1).map((r) => ({ product: p, review: r }));
+  })
+  .slice(0, 4);
 
 // Product advantages data - Village UMKM Focus
 const advantages = [
@@ -387,9 +351,9 @@ const HomePage = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {reviews.map((review, index) => (
+            {reviewShowcase.map(({ product: p, review: r }, index) => (
               <motion.div
-                key={review.id}
+                key={`${p.id}-${r.id}`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -400,24 +364,28 @@ const HomePage = () => {
                   <CardHeader>
                     <div className="flex items-center gap-4">
                       <Avatar>
-                        <AvatarImage src={review.avatar} alt={review.name} />
+                        <AvatarImage src={r.avatar} alt={r.name} />
                         <AvatarFallback>
-                          {review.name
+                          {r.name
                             .split(" ")
                             .map((n) => n[0])
                             .join("")}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1">
-                        <div className="font-semibold">{review.name}</div>
+                        <div className="font-semibold">{r.name}</div>
                         <div className="text-sm text-muted-foreground">
-                          {review.business}
+                          {p.title}
                         </div>
                         <div className="flex items-center mt-1">
-                          {[...Array(review.rating)].map((_, i) => (
+                          {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                              className={`w-4 h-4 ${
+                                i < Math.round(r.rating)
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : "text-muted-foreground"
+                              }`}
                             />
                           ))}
                         </div>
@@ -425,17 +393,15 @@ const HomePage = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground italic">
-                      "{review.review}"
-                    </p>
+                    <p className="text-muted-foreground italic">"{r.text}"</p>
                   </CardContent>
                   <CardFooter className="flex justify-between items-center">
                     <span className="text-sm text-muted-foreground">
-                      {review.date}
+                      {r.date}
                     </span>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                       <MapPin className="w-3 h-3" />
-                      <span>{review.village}</span>
+                      <span>{p.village}</span>
                     </div>
                   </CardFooter>
                 </Card>

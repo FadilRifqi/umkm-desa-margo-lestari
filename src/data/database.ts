@@ -20,6 +20,7 @@ export interface Product {
     shopee?: string;
     tokopedia?: string;
     tiktok?: string;
+    tiktokMobile?: string;
   };
   features: string[];
   specifications: Record<string, string>;
@@ -35,6 +36,17 @@ export interface Product {
   isBestSeller: boolean;
   isNewProduct: boolean;
   createdAt: string;
+  // Optional embedded reviews
+  reviews?: Review[];
+}
+
+export interface Review {
+  id: string;
+  name: string;
+  avatar?: string;
+  rating: number; // 1-5
+  text: string;
+  date: string; // e.g., "2 minggu lalu"
 }
 
 export interface Category {
@@ -121,10 +133,9 @@ export const products: Product[] = [
     thumbnail: "/images/piring1.png",
     village: "Desa Margo Lestari",
     province: "Lampung Selatan",
-    seller: "Neneknya Kak Niken",
+    seller: "Surya Farm",
     sellerContact: {
-      whatsapp: "6281234567890",
-      shopee: "https://shopee.co.id/bambulestari",
+      whatsapp: "623153726657",
     },
     features: [
       "100% Daun Asli Pilihan",
@@ -167,10 +178,9 @@ export const products: Product[] = [
     thumbnail: "/images/minum.jpg",
     village: "Desa Margo Lestari",
     province: "Lampung Selatan",
-    seller: "Neneknya Kak Niken",
+    seller: "Surya Farm",
     sellerContact: {
-      whatsapp: "6281234567890",
-      shopee: "https://shopee.co.id/bambulestari",
+      whatsapp: "623153726657",
     },
     features: [
       "100% Bambu Asli Pilihan",
@@ -215,10 +225,9 @@ export const products: Product[] = [
     thumbnail: "/images/tas_rajut.jpg",
     village: "Desa Margo Lestari",
     province: "Lampung Selatan",
-    seller: "Neneknya Kak Niken",
+    seller: "Surya Farm",
     sellerContact: {
-      whatsapp: "6281234567890",
-      shopee: "https://shopee.co.id/bambulestari",
+      whatsapp: "623153726657",
     },
     features: ["Homemade dengan Teknik Tradisional"],
     specifications: {
@@ -253,10 +262,9 @@ export const products: Product[] = [
     thumbnail: "/images/dompet.jpg",
     village: "Desa Margo Lestari",
     province: "Lampung Selatan",
-    seller: "Neneknya Kak Niken",
+    seller: "Surya Farm",
     sellerContact: {
-      whatsapp: "6281234567890",
-      shopee: "https://shopee.co.id/bambulestari",
+      whatsapp: "623153726657",
     },
     features: ["Homemade dengan Teknik Tradisional"],
     specifications: {
@@ -291,10 +299,9 @@ export const products: Product[] = [
     thumbnail: "/images/tissue.jpg",
     village: "Desa Margo Lestari",
     province: "Lampung Selatan",
-    seller: "Neneknya Kak Niken",
+    seller: "Surya Farm",
     sellerContact: {
-      whatsapp: "6281234567890",
-      shopee: "https://shopee.co.id/bambulestari",
+      whatsapp: "623153726657",
     },
     features: ["Homemade dengan Teknik Tradisional"],
     specifications: {
@@ -328,10 +335,9 @@ export const products: Product[] = [
     thumbnail: "/images/tas_manik.jpg",
     village: "Desa Margo Lestari",
     province: "Lampung Selatan",
-    seller: "Neneknya Kak Niken",
+    seller: "Surya Farm",
     sellerContact: {
-      whatsapp: "6281234567890",
-      shopee: "https://shopee.co.id/bambulestari",
+      whatsapp: "623153726657",
     },
     features: ["Homemade dengan Teknik Tradisional"],
     specifications: {
@@ -370,8 +376,9 @@ export const products: Product[] = [
     province: "Lampung Selatan",
     seller: "Keripik KMJ",
     sellerContact: {
-      whatsapp: "6281234567892",
-      tiktok: "https://www.tiktok.com/@keripikmama",
+      whatsapp: "6281367812884",
+      tiktok: "https://www.tiktok.com/@antoni.yudistira",
+      tiktokMobile: "https://vt.tiktok.com/ZSAY2dmoT/?page=Mall",
     },
     features: [
       "Pisang Segar Pilihan",
@@ -427,8 +434,9 @@ export const products: Product[] = [
     province: "Lampung Selatan",
     seller: "Keripik KMJ",
     sellerContact: {
-      whatsapp: "6281234567892",
-      tiktok: "https://www.tiktok.com/@keripikmama",
+      whatsapp: "6281367812884",
+      tiktok: "https://www.tiktok.com/@antoni.yudistira",
+      tiktokMobile: "https://vt.tiktok.com/ZSAY2dmoT/?page=Mall",
     },
     features: [
       "Singkong Segar Pilihan",
@@ -476,8 +484,9 @@ export const products: Product[] = [
     province: "Lampung Selatan",
     seller: "Keripik KMJ",
     sellerContact: {
-      whatsapp: "6281234567892",
-      tiktok: "https://www.tiktok.com/@keripikmama",
+      whatsapp: "6281367812884",
+      tiktok: "https://www.tiktok.com/@antoni.yudistira",
+      tiktokMobile: "https://vt.tiktok.com/ZSAY2dmoT/?page=Mall",
     },
     features: [
       "Singkong Segar Pilihan",
@@ -532,8 +541,9 @@ export const products: Product[] = [
     province: "Lampung Selatan",
     seller: "Keripik KMJ",
     sellerContact: {
-      whatsapp: "6281234567892",
-      tiktok: "https://www.tiktok.com/@keripikmama",
+      whatsapp: "6281367812884",
+      tiktok: "https://www.tiktok.com/@antoni.yudistira",
+      tiktokMobile: "https://vt.tiktok.com/ZSAY2dmoT/?page=Mall",
     },
     features: [
       "Talas Segar Pilihan",
@@ -617,6 +627,202 @@ export const products: Product[] = [
   },
 ];
 
+// Dummy reviews per product (nama orang bebas)
+export const productReviews: Record<string, Review[]> = {
+  "anyaman-001": [
+    {
+      id: "anyaman-001-r1",
+      name: "Dewi Lestari",
+      rating: 5,
+      text: "Anyaman rapi dan kuat, cocok untuk acara keluarga. Pengiriman cepat!",
+      date: "2 minggu lalu",
+    },
+    {
+      id: "anyaman-001-r2",
+      name: "Budi Santoso",
+      rating: 5,
+      text: "Produk ramah lingkungan dan tampilannya elegan. Recommended!",
+      date: "1 bulan lalu",
+    },
+  ],
+  "anyaman-003": [
+    {
+      id: "anyaman-03-r1",
+      name: "Sari Wulandari",
+      rating: 5,
+      text: "Tas rajutnya kokoh dan motifnya cantik. Istri saya suka sekali.",
+      date: "3 minggu lalu",
+    },
+    {
+      id: "anyaman-03-r2",
+      name: "Rizky Pratama",
+      rating: 4,
+      text: "Jahitannya rapi, bahan tebal. Worth the price!",
+      date: "1 bulan lalu",
+    },
+  ],
+  "anyaman-04": [
+    {
+      id: "anyaman-04-r1",
+      name: "Lina Kartika",
+      rating: 5,
+      text: "Dompet maniknya lucu, detailnya halus. Anak saya suka!",
+      date: "2 minggu lalu",
+    },
+    {
+      id: "anyaman-04-r2",
+      name: "Ahmad Fauzi",
+      rating: 4,
+      text: "Kualitas bagus, sesuai foto. Pengiriman aman.",
+      date: "1 bulan lalu",
+    },
+  ],
+  "anyaman-05": [
+    {
+      id: "anyaman-05-r1",
+      name: "Nadia Puspita",
+      rating: 5,
+      text: "Kotak tissue unik dan kuat, cocok untuk ruang tamu.",
+      date: "1 minggu lalu",
+    },
+    {
+      id: "anyaman-05-r2",
+      name: "Wahyu Hidayat",
+      rating: 4,
+      text: "Rapi dan bersih, krmbali beli untuk hadiah.",
+      date: "3 minggu lalu",
+    },
+  ],
+  "anyaman-06": [
+    {
+      id: "anyaman-06-r1",
+      name: "Maya Putri",
+      rating: 5,
+      text: "Tas manik elegan, cocok untuk kondangan. Terima kasih!",
+      date: "5 hari lalu",
+    },
+    {
+      id: "anyaman-06-r2",
+      name: "Joko Wibowo",
+      rating: 4,
+      text: "Bahan solid dan finishing bagus.",
+      date: "2 minggu lalu",
+    },
+  ],
+  "camilan-001": [
+    {
+      id: "camilan-001-r1",
+      name: "Rahma Aulia",
+      rating: 5,
+      text: "Keripik pisang renyah, rasa pas tidak terlalu manis.",
+      date: "1 minggu lalu",
+    },
+    {
+      id: "camilan-001-r2",
+      name: "Dimas Saputra",
+      rating: 5,
+      text: "Kemasan rapi, cocok untuk oleh-oleh.",
+      date: "3 minggu lalu",
+    },
+  ],
+  "camilan-002": [
+    {
+      id: "camilan-002-r1",
+      name: "Sinta Maharani",
+      rating: 5,
+      text: "Keripik singkongnya gurih dan tidak berminyak.",
+      date: "2 minggu lalu",
+    },
+    {
+      id: "camilan-002-r2",
+      name: "Fajar Nugroho",
+      rating: 4,
+      text: "Rasa balado favorit keluarga. Harga terjangkau!",
+      date: "1 bulan lalu",
+    },
+  ],
+  "camilan-003": [
+    {
+      id: "camilan-003-r1",
+      name: "Putri Melati",
+      rating: 5,
+      text: "Ubi ungunya terasa, tekstur renyah. Wajib coba!",
+      date: "2 minggu lalu",
+    },
+    {
+      id: "camilan-003-r2",
+      name: "Andi Kurniawan",
+      rating: 4,
+      text: "Porsi pas, cocok untuk ngemil nonton bola.",
+      date: "1 bulan lalu",
+    },
+  ],
+  "camilan-004": [
+    {
+      id: "camilan-004-r1",
+      name: "Mega Sari",
+      rating: 5,
+      text: "Keripik talas enak, rasa original-nya bikin nagih.",
+      date: "1 minggu lalu",
+    },
+    {
+      id: "camilan-004-r2",
+      name: "Iqbal Ramadhan",
+      rating: 4,
+      text: "Cocok untuk stok camilan di kantor.",
+      date: "3 minggu lalu",
+    },
+  ],
+  "madu-001": [
+    {
+      id: "madu-001-r1",
+      name: "Yuni Astuti",
+      rating: 5,
+      text: "Madunya kental dan wangi, bagus untuk kesehatan keluarga.",
+      date: "2 minggu lalu",
+    },
+    {
+      id: "madu-001-r2",
+      name: "Robby Prasetyo",
+      rating: 5,
+      text: "Rasa alami, tanpa rasa gula. Mantap!",
+      date: "1 bulan lalu",
+    },
+  ],
+};
+
+export const getReviewsByProductId = (id: string): Review[] => {
+  const p = getProductById(id);
+  const fromMap = productReviews[id];
+  if (fromMap && fromMap.length) return fromMap;
+  if (!p)
+    return [
+      {
+        id: `${id}-r1`,
+        name: "Pelanggan UMKM",
+        rating: 5,
+        text: "Produk berkualitas dan pelayanan cepat.",
+        date: "2 minggu lalu",
+      },
+    ];
+  return [
+    {
+      id: `${id}-r1`,
+      name: "Pelanggan UMKM",
+      rating: Math.round(p.rating) || 5,
+      text: `Sangat suka ${p.title}! Kualitasnya sesuai harapan.`,
+      date: "2 minggu lalu",
+    },
+    {
+      id: `${id}-r2`,
+      name: "Pengguna Terverifikasi",
+      rating: Math.max(4, Math.round(p.rating)) || 5,
+      text: p.description,
+      date: "1 bulan lalu",
+    },
+  ];
+};
+
 // Fungsi helper untuk mencari produk
 export const getProductsByCategory = (categorySlug: string) => {
   return products.filter((product) => product.category === categorySlug);
@@ -639,7 +845,9 @@ export const getSubcategoryBySlug = (
   subcategorySlug: string
 ) => {
   const category = getCategoryBySlug(categorySlug);
-  return category?.subcategories.find((sub) => sub.slug === subcategorySlug);
+  return category?.subcategories.find(
+    (sub: Subcategory) => sub.slug === subcategorySlug
+  );
 };
 
 export const searchProducts = (query: string) => {

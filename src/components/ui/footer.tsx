@@ -56,27 +56,6 @@ const Footer = () => {
               >
                 <a href="#">Beranda</a>
               </Button>
-              <Button
-                variant="link"
-                className="h-auto p-0 text-muted-foreground justify-start"
-                asChild
-              >
-                <a href="#">Tentang Kami</a>
-              </Button>
-              <Button
-                variant="link"
-                className="h-auto p-0 text-muted-foreground justify-start"
-                asChild
-              >
-                <a href="#">Layanan</a>
-              </Button>
-              <Button
-                variant="link"
-                className="h-auto p-0 text-muted-foreground justify-start"
-                asChild
-              >
-                <a href="#">Kontak</a>
-              </Button>
             </nav>
           </div>
 
@@ -90,27 +69,6 @@ const Footer = () => {
                 asChild
               >
                 <a href="#">Website UMKM</a>
-              </Button>
-              <Button
-                variant="link"
-                className="h-auto p-0 text-muted-foreground justify-start"
-                asChild
-              >
-                <a href="#">E-commerce</a>
-              </Button>
-              <Button
-                variant="link"
-                className="h-auto p-0 text-muted-foreground justify-start"
-                asChild
-              >
-                <a href="#">Digital Marketing</a>
-              </Button>
-              <Button
-                variant="link"
-                className="h-auto p-0 text-muted-foreground justify-start"
-                asChild
-              >
-                <a href="#">Konsultasi Bisnis</a>
               </Button>
             </nav>
           </div>

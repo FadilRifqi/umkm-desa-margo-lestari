@@ -81,8 +81,15 @@ const ProductDetailPage = () => {
   };
 
   const handleTikTokLink = () => {
-    if (product.sellerContact.tiktok) {
-      window.open(product.sellerContact.tiktok, "_blank");
+    if (product.sellerContact.tiktok || product.sellerContact.tiktokMobile) {
+      const isMobile =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      const url = isMobile
+        ? product.sellerContact.tiktokMobile || product.sellerContact.tiktok!
+        : product.sellerContact.tiktok || product.sellerContact.tiktokMobile!;
+      window.open(url, "_blank");
     }
   };
 
